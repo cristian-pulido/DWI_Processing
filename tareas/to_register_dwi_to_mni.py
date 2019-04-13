@@ -42,7 +42,10 @@ if not os.path.exists(finalname ):
 
     mean_b0 = np.mean(b0, -1)
 
-    mni_t2 = nib.load(d.standard_t2)
+    try:
+        mni_t2 = nib.load(d.standard_t2)
+    except:
+        mni_t2 = nib.load(d.standard_t1)
     mni_t2_data = mni_t2.get_data()
     MNI_T2_affine = mni_t2.affine
 
