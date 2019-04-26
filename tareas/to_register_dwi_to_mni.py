@@ -55,7 +55,7 @@ if not os.path.exists(finalname ):
 
     affine, starting_affine = tools.affine_registration(mean_b0, mni_t2_data, moving_grid2world=affine_DWI,
                                                         static_grid2world=MNI_T2_affine)
-
+    print("terminado affine registartion")
     warped_moving, mapping = tools.syn_registration(mean_b0, mni_t2_data,
                                                     moving_grid2world=affine_DWI,
                                                     static_grid2world=MNI_T2_affine,
@@ -65,9 +65,9 @@ if not os.path.exists(finalname ):
                                                     dim=3, level_iters=[10, 10, 5],
                                                     # prealign=affine.affine)
                                                     prealign=starting_affine)
-
+    print("terminado syn registartion")
     for gradientDirection in rangos:
-        # print(gradientDirection)
+        print(gradientDirection)
         directionWarped[:, :, :, gradientDirection] = mapping.transform(
             data_DWI[:, :, :, gradientDirection].astype(int), interpolation='nearest')
 
