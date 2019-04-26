@@ -92,7 +92,7 @@ if not os.path.exists(os.path.join(folder,"list_maps.txt")):
     tensor_streamlines = [streamline for streamline in eu]
 
     hdr = nib.trackvis.empty_header()
-    hdr['voxel_size'] = nib.load(path_input).get_header().get_zooms()[:3]
+    hdr['voxel_size'] = nib.load(path_input).header.get_zooms()[:3]
     hdr['voxel_order'] = 'LAS'
     hdr['dim'] = FA.shape
 
