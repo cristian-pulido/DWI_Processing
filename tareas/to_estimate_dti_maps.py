@@ -14,7 +14,7 @@ import dipy.reconst.dti as dti
 from dipy.data import get_sphere
 from dipy.tracking.eudx import EuDX
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
     path_input = sys.argv[1]
     path_output = sys.argv[2]
 
@@ -50,7 +50,7 @@ def run_to_estimate_dti_maps(path_input,path_output,file_tensor_fitevals="",file
             if "TENSOR" in l and "bvec" in l:
                 fbvec=os.path.join(folder_sujeto,l)
                 
-    if file_tensor_fitevals == "" or file_tensor_fitevecs= "":
+    if file_tensor_fitevals == "" or file_tensor_fitevecs== "":
         
         for i in os.listdir(folder):
             if "DTIEvals" in i:
@@ -133,7 +133,7 @@ def run_to_estimate_dti_maps(path_input,path_output,file_tensor_fitevals="",file
 
     return path_input
 
-if len(sys.argv) > 1:
-    path_input=run_to_estimate_dti_maps(path_input,path_output,file_tensor_fitevals=,file_tensor_fitevecs=,fbval=,fbvec=)
+if __name__ == "__main__":
+    path_input=run_to_estimate_dti_maps(path_input,path_output,file_tensor_fitevals,file_tensor_fitevecs,fbval,fbvec)
     
     print(path_input)

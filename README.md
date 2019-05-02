@@ -57,6 +57,14 @@ Task for DWI images
 	  python </path/of/task.py> </path/file.nii.gz> </path/folder/results>
 
 	- Ej: python /home/user/Desktop/DWI_Processing/tareas/betDWI.py /home/user/Desktop/results/TENSOR.nii.gz /home/user/Desktop/results/
+    
+	- Tambien se puede ejecutar tareas desde una consola de python, cada archivo tiene una funcion 'run_<nombre>' la cual puede
+	  ser importada:
+    
+	  Ej: 
+		  from tareas.reslicing import run_reslicing
+		  run_reslicing(path_input=out_non_local,
+                        path_output=folder)
 
 	- Tener en cuenta todos los resultados se guardan en la misma carpeta
 

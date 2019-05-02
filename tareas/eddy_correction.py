@@ -8,7 +8,7 @@ from tareas.dependencias import definitions as d
 from tareas.dependencias import fsl_wrapper as fsl
 import shutil
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
     path_input = sys.argv[1]
     path_output = sys.argv[2]
 
@@ -38,6 +38,6 @@ def run_eddy_correction(path_input,path_output,ref_bo):
     #     shutil.rmtree(path_temporal)
     return final_name
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
     final_name=run_eddy_correction(path_input,path_output,ref_bo)
     print(final_name)

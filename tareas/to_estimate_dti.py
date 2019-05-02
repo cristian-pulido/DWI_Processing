@@ -13,7 +13,7 @@ import dipy.reconst.dti as dti
 from dipy.io import read_bvals_bvecs
 from dipy.core.gradients import gradient_table
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
     path_input = sys.argv[1]
     path_output = sys.argv[2]
 
@@ -27,9 +27,9 @@ if len(sys.argv) > 1:
             
     file_inMask == ""
     folder=os.path.dirname(path_input)
-        for i in os.listdir(folder):
-            if "masked_mask" in i:
-                file_inMask=os.path.join(folder,i)
+    for i in os.listdir(folder):
+        if "masked_mask" in i:
+            file_inMask=os.path.join(folder,i)
 
     #################
 def run_to_estimate_dti(path_input,path_output,fbval="",fbvec="",file_inMask=""):
@@ -83,7 +83,7 @@ def run_to_estimate_dti(path_input,path_output,fbval="",fbvec="",file_inMask="")
     print(path_input)
     return path_input
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
     path_input = run_to_estimate_dti(path_input,path_output,fbval,fbvec,file_inMask)
     print(path_input)
     

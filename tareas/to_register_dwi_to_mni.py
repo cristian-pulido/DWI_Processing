@@ -13,7 +13,7 @@ import numpy as np
 from dipy.io import read_bvals_bvecs
 from dipy.core.gradients import gradient_table
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
     path_input = sys.argv[1]
     path_output = sys.argv[2]
 
@@ -110,7 +110,7 @@ def run_to_register_dwi_to_mni(path_input,path_output,fbval="",fbvec=""):
     print(finalname)
     return path_input
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
     run_to_register_dwi_to_mni(path_input,path_output,fbval,fbvec)
     print(path_input)
 

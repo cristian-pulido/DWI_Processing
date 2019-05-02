@@ -12,7 +12,7 @@ import nibabel as nib
 from dipy.align.reslice import reslice
 
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
     path_input = sys.argv[1]
     path_output = sys.argv[2]
     vox_sz=d.vox_sz
@@ -37,6 +37,6 @@ def run_reslicing(path_input,path_output,vox_sz=d.vox_sz):
         nib.save(nib.Nifti1Image(data, affine), finalFileName)
     return finalFileName
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
     finalFileName=run_reslicing(path_input,path_output,vox_sz=d.vox_sz)
     print(finalFileName)

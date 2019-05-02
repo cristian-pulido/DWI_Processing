@@ -10,10 +10,6 @@ from dipy.io.trackvis import save_trk
 
 
 
-
-
-
-
 # def to_generate_tractography(path_dwi_input, path_binary_mask, path_out, path_bval, path_bvec):
 from dipy.reconst.shm import CsaOdfModel
 from dipy.data import default_sphere
@@ -23,7 +19,7 @@ from dipy.tracking import utils
 from dipy.tracking.local import ThresholdTissueClassifier
 
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
     path_input = sys.argv[1]
     path_output = sys.argv[2]
     ###################
@@ -67,8 +63,8 @@ def run_to_generate_tractography(path_input,path_output,file_inMask="",fbval="",
     if file_inMask == "":
         
         for i in os.listdir(folder):
-        if "masked_mask" in i:
-            file_inMask=os.path.join(folder,i)
+            if "masked_mask" in i:
+                file_inMask=os.path.join(folder,i)
 
     if not os.path.exists(os.path.join(path_output , '_tractography_CsaOdf' + '.trk')):
         dwi_img = nib.load(path_input)
@@ -100,6 +96,6 @@ def run_to_generate_tractography(path_input,path_output,file_inMask="",fbval="",
     print('    - Ending reconstruction of Tractography...')
     return path_input
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
     path_input = run_to_generate_tractography(path_input,path_output,file_inMask,fbval,fbvec)
     print(path_input)

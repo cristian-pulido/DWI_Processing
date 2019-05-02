@@ -12,7 +12,7 @@ from dipy.io.trackvis import save_trk
 from tareas.dependencias import definitions as d
 import collections
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
     path_input = sys.argv[1]
     path_output = sys.argv[2]
     ###################
@@ -47,8 +47,8 @@ def run_to_generate_bunddle(path_input,path_output,file_inMask="",fbval="",fbvec
     if file_inMask == "":
         
         for i in os.listdir(folder):
-        if "masked_mask" in i:
-            file_inMask=os.path.join(folder,i)
+            if "masked_mask" in i:
+                file_inMask=os.path.join(folder,i)
         
     
     if not os.path.exists(os.path.join(path_output,'feature.out')):
@@ -261,6 +261,6 @@ def run_to_generate_bunddle(path_input,path_output,file_inMask="",fbval="",fbvec
     return path_input
 
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
     path_input=run_to_generate_bunddle(path_input,path_output,file_inMask,fbval,fbvec)
     print(path_input)

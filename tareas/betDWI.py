@@ -5,7 +5,7 @@ import os
 
 sys.path+=[os.path.dirname(os.path.dirname(os.path.abspath(__file__)))+"/"]
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
 
     path_input = sys.argv[1]
     path_output = sys.argv[2]
@@ -42,7 +42,7 @@ def run_betDWI(path_input,path_output):
     print("Ejecutando")
     return finalFileName
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
     finalFileName=run_betDWI(path_input,path_output)
 
     print(finalFileName)

@@ -14,7 +14,9 @@ import numpy as np
 from dipy.denoise.noise_estimate import estimate_sigma
 from dipy.denoise.nlmeans import nlmeans
 
-if len(sys.argv) > 1:
+
+
+if __name__ == "__main__":
     path_input = sys.argv[1]
     path_output = sys.argv[2]
     
@@ -39,6 +41,6 @@ def run_nonLocalMean(path_input,path_output):
         nib.save(nib.Nifti1Image(newData.astype(np.float32), img.affine), finalFileName)
     return finalFileName
 
-if len(sys.argv) > 1:
+if __name__ == "__main__":
     finalFileName = run_nonLocalMean(path_input,path_output)
     print(finalFileName)
