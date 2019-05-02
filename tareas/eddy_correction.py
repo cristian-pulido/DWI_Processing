@@ -8,30 +8,36 @@ from tareas.dependencias import definitions as d
 from tareas.dependencias import fsl_wrapper as fsl
 import shutil
 
-path_input = sys.argv[1]
-path_output = sys.argv[2]
+if len(sys.argv) > 1:
+    path_input = sys.argv[1]
+    path_output = sys.argv[2]
 
-"""
-Prueba documental.
-In:
-file_in: akakakakka
-outPath: kakakasjdjdlllf kklkd
-ref_bo. kskskdejien skkd  dllkd
-Out:
-"""
-ref_bo = '0'
-print('    - running Eddy Correction...')
+    """
+    Prueba documental.
+    In:
+    file_in: akakakakka
+    outPath: kakakasjdjdlllf kklkd
+    ref_bo. kskskdejien skkd  dllkd
+    Out:
+    """
+    ref_bo = '0'
+    
 
+def run_eddy_correction(path_input,path_output,ref_bo):
+    print('    - running Eddy Correction...')
+    refNameOnly = utils.to_extract_filename(path_input)
+    final_name=os.path.join(path_output,refNameOnly + d.id_eddy_correct + d.extension)
 
-refNameOnly = utils.to_extract_filename(path_input)
-final_name=os.path.join(path_output,refNameOnly + d.id_eddy_correct + d.extension)
+    if not os.path.exists(final_name):
+        refName = utils.to_extract_filename_extention(path_input)
+        path_temporal=os.path.join(path_output,"temp_eddy")
+        os.mkdir(path_temporal)
+        os.system('cp ' + path_input + ' ' + path_temporal)  # Copiamos archivo de difusion a la carpeta temporal
+        fsl.eddy_correct(path_temporal +"/"+ refName, path_temporal +"/"+ refNameOnly + d.id_eddy_correct + '.nii', ref_bo)
+        os.system('cp ' + os.path.join(path_temporal, refNameOnly + d.id_eddy_correct + d.extension) + ' ' + path_output)  # Copiamos archivo de difusion desde carpeta temporal
+    #     shutil.rmtree(path_temporal)
+    return final_name
 
-if not os.path.exists(final_name):
-    refName = utils.to_extract_filename_extention(path_input)
-    path_temporal=os.path.join(path_output,"temp_eddy")
-    os.mkdir(path_temporal)
-    os.system('cp ' + path_input + ' ' + path_temporal)  # Copiamos archivo de difusion a la carpeta temporal
-    fsl.eddy_correct(path_temporal +"/"+ refName, path_temporal +"/"+ refNameOnly + d.id_eddy_correct + '.nii', ref_bo)
-    os.system('cp ' + os.path.join(path_temporal, refNameOnly + d.id_eddy_correct + d.extension) + ' ' + path_output)  # Copiamos archivo de difusion desde carpeta temporal
-    shutil.rmtree(path_temporal)
-print(final_name)
+if len(sys.argv) > 1:
+    final_name=run_eddy_correction(path_input,path_output,ref_bo)
+    print(final_name)
